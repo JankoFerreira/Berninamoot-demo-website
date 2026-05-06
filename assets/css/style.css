@@ -2373,46 +2373,21 @@ p {
     cursor: zoom-in;
 }
 
-.class-price-gallery figure::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 1900;
-    background: rgba(18, 20, 24, 0.46);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 220ms ease;
-}
-
 .class-price-gallery img {
     object-fit: contain;
     background: #fff;
-    transition: transform 260ms ease, box-shadow 260ms ease;
+    transition: transform 220ms ease;
 }
 
 .class-price-gallery figure:hover,
 .class-price-gallery figure:focus-visible {
-    z-index: 1901;
-}
-
-.class-price-gallery figure:hover::before,
-.class-price-gallery figure:focus-visible::before {
-    opacity: 1;
+    border-color: rgba(181, 30, 45, 0.2);
+    box-shadow: var(--color-shadow);
 }
 
 .class-price-gallery figure:hover img,
 .class-price-gallery figure:focus-visible img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 1902;
-    width: min(88vw, 980px);
-    height: auto;
-    max-height: 88vh;
-    object-fit: contain;
-    transform: translate(-50%, -50%);
-    border-radius: 18px;
-    box-shadow: 0 34px 90px rgba(8, 9, 11, 0.44);
+    transform: scale(1.03);
 }
 
 .class-image-lightbox {
@@ -3409,12 +3384,6 @@ p {
 
     .class-price-gallery figure {
         min-height: 320px;
-    }
-
-    .class-price-gallery figure:hover img,
-    .class-price-gallery figure:focus-visible img {
-        width: min(94vw, 680px);
-        max-height: 84vh;
     }
 
     .class-image-lightbox__shell {
