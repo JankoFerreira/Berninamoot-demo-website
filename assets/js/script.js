@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const backToTopButton = document.querySelector(".back-to-top");
     const currentYear = document.querySelector("#currentYear");
     const priceTabsRoot = document.querySelector("[data-price-tabs]");
+    const classPriceImageButtons = Array.from(document.querySelectorAll("[data-class-price-image]"));
     const mobileNavBreakpoint = window.matchMedia("(max-width: 860px)");
     const whatsappIconMarkup = `
         <svg viewBox="0 0 24 24" role="presentation">
@@ -176,6 +177,107 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", () => {
                 activatePriceTab(button.dataset.priceTabTrigger, !button.classList.contains("pricing-tab"));
             });
+        });
+    }
+
+    if (classPriceImageButtons.length) {
+        let activeClassImageTrigger = null;
+        let classImageZoom = 1;
+
+        const lightbox = document.createElement("div");
+        lightbox.className = "class-image-lightbox";
+        lightbox.setAttribute("aria-hidden", "true");
+        lightbox.innerHTML = `
+            <div class="class-image-lightbox__shell" role="dialog" aria-modal="true" aria-label="Class price sheet preview">
+                <div class="class-image-lightbox__toolbar">
+                    <button class="class-image-lightbox__button" type="button" data-class-image-zoom-out aria-label="Zoom out">-</button>
+                    <button class="class-image-lightbox__button" type="button" data-class-image-zoom-in aria-label="Zoom in">+</button>
+                    <button class="class-image-lightbox__button" type="button" data-class-image-close aria-label="Close preview">X</button>
+                </div>
+                <div class="class-image-lightbox__viewport">
+                    <img class="class-image-lightbox__image" src="" alt="">
+                </div>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+
+        const lightboxImage = lightbox.querySelector(".class-image-lightbox__image");
+        const closeButton = lightbox.querySelector("[data-class-image-close]");
+        const zoomInButton = lightbox.querySelector("[data-class-image-zoom-in]");
+        const zoomOutButton = lightbox.querySelector("[data-class-image-zoom-out]");
+
+        const setClassImageZoom = (nextZoom) => {
+            classImageZoom = Math.min(Math.max(nextZoom, 1), 2.4);
+            if (!lightboxImage) return;
+
+            if (classImageZoom === 1) {
+                lightboxImage.style.width = "";
+                lightboxImage.style.maxWidth = "";
+                lightboxImage.style.maxHeight = "";
+                lightboxImage.style.transform = "";
+                return;
+            }
+
+            lightboxImage.style.width = `${Math.round(classImageZoom * 100)}%`;
+            lightboxImage.style.maxWidth = "none";
+            lightboxImage.style.maxHeight = "none";
+            lightboxImage.style.transform = "none";
+        };
+
+        const closeClassImageLightbox = () => {
+            lightbox.classList.remove("is-open");
+            lightbox.setAttribute("aria-hidden", "true");
+            body.classList.remove("lightbox-open");
+            setClassImageZoom(1);
+            if (activeClassImageTrigger) {
+                activeClassImageTrigger.focus();
+            }
+        };
+
+        const openClassImageLightbox = (trigger) => {
+            if (!lightboxImage) return;
+            activeClassImageTrigger = trigger;
+            lightboxImage.src = trigger.dataset.classPriceImage;
+            lightboxImage.alt = trigger.dataset.classPriceAlt || "Class price sheet";
+            setClassImageZoom(1);
+            lightbox.classList.add("is-open");
+            lightbox.setAttribute("aria-hidden", "false");
+            body.classList.add("lightbox-open");
+            closeButton?.focus();
+        };
+
+        classPriceImageButtons.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                openClassImageLightbox(trigger);
+            });
+
+            trigger.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" && event.key !== " ") return;
+                event.preventDefault();
+                openClassImageLightbox(trigger);
+            });
+        });
+
+        zoomInButton?.addEventListener("click", () => {
+            setClassImageZoom(classImageZoom + 0.35);
+        });
+
+        zoomOutButton?.addEventListener("click", () => {
+            setClassImageZoom(classImageZoom - 0.35);
+        });
+
+        closeButton?.addEventListener("click", closeClassImageLightbox);
+
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                closeClassImageLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+                closeClassImageLightbox();
+            }
         });
     }
 
