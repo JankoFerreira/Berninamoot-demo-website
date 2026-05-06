@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
     const backToTopButton = document.querySelector(".back-to-top");
     const currentYear = document.querySelector("#currentYear");
+    const priceTabsRoot = document.querySelector("[data-price-tabs]");
     const mobileNavBreakpoint = window.matchMedia("(max-width: 860px)");
     const whatsappIconMarkup = `
         <svg viewBox="0 0 24 24" role="presentation">
@@ -144,6 +145,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     handleScrollUI();
     setActiveNavLink();
+
+    if (priceTabsRoot) {
+        const priceTabButtons = Array.from(document.querySelectorAll("[data-price-tab-trigger]"));
+        const pricePanels = Array.from(priceTabsRoot.querySelectorAll("[data-price-panel]"));
+        const activatePriceTab = (targetTab, shouldScroll = false) => {
+            priceTabButtons.forEach((button) => {
+                const isTarget = button.dataset.priceTabTrigger === targetTab;
+                if (button.classList.contains("pricing-tab")) {
+                    button.classList.toggle("is-active", isTarget);
+                    button.setAttribute("aria-selected", String(isTarget));
+                }
+            });
+
+            pricePanels.forEach((panel) => {
+                const isTarget = panel.dataset.pricePanel === targetTab;
+                panel.hidden = !isTarget;
+                panel.classList.toggle("is-active", isTarget);
+            });
+
+            if (shouldScroll) {
+                priceTabsRoot.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        };
+
+        priceTabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                activatePriceTab(button.dataset.priceTabTrigger, !button.classList.contains("pricing-tab"));
+            });
+        });
+    }
 
     if (backToTopButton) {
         backToTopButton.addEventListener("click", () => {

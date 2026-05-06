@@ -288,15 +288,23 @@ p {
 .logo__mark {
     display: inline-grid;
     place-items: center;
-    width: 2.45rem;
-    height: 2.45rem;
-    border-radius: 50%;
-    background: linear-gradient(145deg, var(--color-primary), #79131c);
+    width: 7.4rem;
+    height: 2.65rem;
+    padding: 0.18rem;
+    border-radius: 14px;
+    background: var(--color-white);
     color: var(--color-white);
     font-family: "Cormorant Garamond", serif;
     font-size: 1.38rem;
     font-weight: 700;
-    box-shadow: 0 10px 18px rgba(181, 30, 45, 0.24);
+    overflow: hidden;
+    box-shadow: 0 10px 18px rgba(24, 28, 34, 0.14);
+}
+
+.logo__mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .logo__text {
@@ -640,6 +648,23 @@ p {
 .gallery-card:hover img,
 .product-card:hover img {
     transform: scale(1.04);
+}
+
+.product-card__image--overlocker {
+    object-position: center 42%;
+}
+
+.product-card__image--machine,
+.product-card__image--wide-machine {
+    object-position: center center;
+}
+
+.product-card__image--detail {
+    object-position: center 34%;
+}
+
+.product-card__image--materials {
+    object-position: center 46%;
 }
 
 .hero-card--main {
@@ -1037,6 +1062,10 @@ p {
         linear-gradient(180deg, #f1e3d6, #e4d3c3);
 }
 
+.image-frame__image--home-machine {
+    object-position: 52% 58%;
+}
+
 .about__floating-card {
     position: relative;
     max-width: 320px;
@@ -1291,6 +1320,9 @@ p {
     align-items: center;
     gap: 0.4rem;
     margin-top: 0.8rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
     color: var(--color-primary);
     font-weight: 800;
 }
@@ -1439,14 +1471,14 @@ p {
     position: relative;
     overflow: hidden;
     background-color: #d9d1cb;
-    --page-hero-position: center 48%;
-    --page-hero-position-mobile: center 52%;
+    --page-hero-position: center 52%;
+    --page-hero-position-mobile: center 50%;
     --page-hero-scale: 1;
-    --page-hero-scale-mobile: 1.08;
+    --page-hero-scale-mobile: 1.04;
 }
 
 .products-hero__image {
-    background-image: url("../images/gallery/repair-service-1.jpg");
+    background-image: url("../images/hero/products-hero-bernina-790-pro.jpg");
 }
 
 .products-hero::before,
@@ -2220,6 +2252,126 @@ p {
     background: rgba(255, 255, 255, 0.88);
 }
 
+.pricing-details {
+    margin-top: 2rem;
+}
+
+.pricing-tabs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0.42rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(31, 35, 40, 0.08);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: var(--color-shadow-soft);
+}
+
+.pricing-tab {
+    min-height: 42px;
+    padding: 0.65rem 1.05rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-charcoal-soft);
+    font-weight: 800;
+    transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.pricing-tab.is-active {
+    background: linear-gradient(135deg, var(--color-primary), #cf3243);
+    color: var(--color-white);
+    box-shadow: 0 12px 24px rgba(181, 30, 45, 0.2);
+}
+
+.pricing-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(31, 35, 40, 0.08);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(246, 239, 233, 0.92)),
+        rgba(255, 255, 255, 0.9);
+    box-shadow: var(--color-shadow);
+}
+
+.pricing-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #da5b68, rgba(31, 35, 40, 0.2));
+}
+
+.pricing-panel[hidden] {
+    display: none;
+}
+
+.pricing-panel__content {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.6rem;
+}
+
+.pricing-panel__content h3 {
+    font-size: clamp(1.55rem, 2vw, 2rem);
+}
+
+.service-price-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.service-price-list div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 64px;
+    padding: 0.88rem 1rem;
+    border: 1px solid rgba(31, 35, 40, 0.08);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.service-price-list dt {
+    color: var(--color-charcoal);
+    font-weight: 800;
+}
+
+.service-price-list dd {
+    margin: 0;
+    flex: 0 0 auto;
+    color: var(--color-primary);
+    font-weight: 900;
+}
+
+.class-price-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.class-price-gallery figure {
+    margin: 0;
+    min-height: 360px;
+    border: 1px solid rgba(31, 35, 40, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--color-shadow-soft);
+}
+
+.class-price-gallery img {
+    object-fit: contain;
+    background: #fff;
+}
+
 .services-atelier {
     position: relative;
     overflow: hidden;
@@ -2613,6 +2765,25 @@ p {
     padding: 4rem 0 2rem;
 }
 
+.logo--footer {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.logo--footer .logo__mark {
+    width: 9.8rem;
+    height: 3.05rem;
+    padding: 0.22rem 0.34rem;
+    border-radius: 10px;
+    background: #0d0f12;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+}
+
+.logo--footer .logo__mark img {
+    object-fit: contain;
+}
+
 .logo--footer .logo__text strong,
 .logo--footer .logo__text small,
 .footer__links h3,
@@ -2865,6 +3036,7 @@ p {
 
     .detail-grid,
     .pricing-grid,
+    .pricing-panel__content,
     .contact-preview,
     .split-callout,
     .form-section {
@@ -3034,6 +3206,8 @@ p {
     .products__grid,
     .gallery__grid,
     .repairs__grid,
+    .service-price-list,
+    .class-price-gallery,
     .form-grid {
         grid-template-columns: 1fr;
     }
@@ -3066,6 +3240,20 @@ p {
         border-radius: 28px;
     }
 
+    .logo__mark {
+        width: 6.1rem;
+        height: 2.25rem;
+    }
+
+    .logo--footer {
+        align-items: center;
+    }
+
+    .logo--footer .logo__mark {
+        width: 8.4rem;
+        height: 2.65rem;
+    }
+
     .products-showroom .product-card--showroom,
     .product-care .repair-card--premium,
     .class-panel--showroom {
@@ -3085,6 +3273,31 @@ p {
     .services-atelier .detail-card--service,
     .services-atelier__intro {
         border-radius: 24px;
+    }
+
+    .pricing-tabs {
+        display: grid;
+        width: 100%;
+        border-radius: 24px;
+    }
+
+    .pricing-panel,
+    .pricing-panel__content {
+        border-radius: 24px;
+    }
+
+    .pricing-panel__content {
+        padding: 1rem;
+    }
+
+    .service-price-list div {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .class-price-gallery figure {
+        min-height: 320px;
     }
 
     .section {

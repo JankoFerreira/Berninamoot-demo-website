@@ -64,9 +64,7 @@
         <header class="site-header" id="top">
             <div class="container header__inner">
                 <a class="logo" href="index.html" aria-label="Bernina Moot home">
-                    <span class="logo__mark">
-                        B
-                    </span>
+                    <span class="logo__mark"><img src="assets/images/light%20logo.jpeg" alt="" aria-hidden="true"></span>
                     <span class="logo__text">
                         <strong>
                             Bernina Moot
@@ -125,7 +123,7 @@
             <!-- Prices hero -->
             <section
                 class="page-hero"
-                style="background-image: url('assets/images/gallery/community-moment-1.jpg'); --page-hero-position: center 42%; --page-hero-position-mobile: center 34%;"
+                style="background-image: url('assets/images/materials.jpeg'); --page-hero-position: center 48%; --page-hero-position-mobile: center 45%;"
             >
                 <div class="page-hero__overlay">
                 </div>
@@ -187,9 +185,9 @@
                             Pricing depends on the machine type, condition, required parts, and level of work
                             involved.
                         </p>
-                        <a class="text-link" href="products.html">
-                            Ask about support
-                        </a>
+                        <button class="text-link pricing-card__action" type="button" data-price-tab-trigger="repairs">
+                            View service prices
+                        </button>
                     </article>
                     <article class="pricing-card" data-reveal="up">
                         <h3>
@@ -199,9 +197,9 @@
                             Class pricing varies by format, topic, and learning level. Enquiries help match
                             you to the right option.
                         </p>
-                        <a class="text-link" href="products.html">
-                            Ask about classes
-                        </a>
+                        <button class="text-link pricing-card__action" type="button" data-price-tab-trigger="classes">
+                            View class options
+                        </button>
                     </article>
                     <article class="pricing-card" data-reveal="up">
                         <h3>
@@ -214,6 +212,165 @@
                             Ask about parts
                         </a>
                     </article>
+                </div>
+                <div class="container pricing-details" data-price-tabs>
+                    <div class="pricing-tabs" role="tablist" aria-label="Price detail categories" data-reveal="up">
+                        <button
+                            class="pricing-tab is-active"
+                            type="button"
+                            role="tab"
+                            id="price-tab-repairs"
+                            aria-selected="true"
+                            aria-controls="price-panel-repairs"
+                            data-price-tab-trigger="repairs"
+                        >
+                            Repairs & Servicing
+                        </button>
+                        <button
+                            class="pricing-tab"
+                            type="button"
+                            role="tab"
+                            id="price-tab-classes"
+                            aria-selected="false"
+                            aria-controls="price-panel-classes"
+                            data-price-tab-trigger="classes"
+                        >
+                            Classes
+                        </button>
+                    </div>
+                    <div
+                        class="pricing-panel is-active"
+                        id="price-panel-repairs"
+                        role="tabpanel"
+                        aria-labelledby="price-tab-repairs"
+                        data-price-panel="repairs"
+                    >
+                        <div class="pricing-panel__content">
+                            <div>
+                                <p class="eyebrow">
+                                    Services
+                                </p>
+                                <h3>
+                                    Prices for services
+                                </h3>
+                                <p>
+                                    Service pricing is listed by machine type. Parts and additional repair work
+                                    can be quoted after assessment.
+                                </p>
+                            </div>
+                            <dl class="service-price-list" aria-label="Service prices">
+                                <div>
+                                    <dt>
+                                        Meganiese masjiene
+                                    </dt>
+                                    <dd>
+                                        R550
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Electroniese Masjiene
+                                    </dt>
+                                    <dd>
+                                        R580
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Borduur eenheid
+                                    </dt>
+                                    <dd>
+                                        R200
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Die nuutste Bernina 500 reeks
+                                    </dt>
+                                    <dd>
+                                        R700
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Bernette b77
+                                    </dt>
+                                    <dd>
+                                        R700
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Bernette b70/79
+                                    </dt>
+                                    <dd>
+                                        R850
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Bernina 7 en 8 reeks
+                                    </dt>
+                                    <dd>
+                                        R950
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>
+                                        Industriele Masjiene
+                                    </dt>
+                                    <dd>
+                                        vanaf R700
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                    <div
+                        class="pricing-panel"
+                        id="price-panel-classes"
+                        role="tabpanel"
+                        aria-labelledby="price-tab-classes"
+                        data-price-panel="classes"
+                        hidden
+                    >
+                        <div class="pricing-panel__content pricing-panel__content--classes">
+                            <div>
+                                <p class="eyebrow">
+                                    Classes & Courses
+                                </p>
+                                <h3>
+                                    Sewing classes and course options
+                                </h3>
+                                <p>
+                                    Browse the current class and course price sheets, then contact the team to
+                                    confirm dates, availability, and the best fit for your level.
+                                </p>
+                                <a
+                                    class="button button--primary"
+                                    href="https://wa.me/27659322725?text=Hello%20Bernina%20Moot%2C%20I%20would%20like%20to%20ask%20about%20classes%20or%20courses."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Ask about classes/courses
+                                </a>
+                            </div>
+                            <div class="class-price-gallery" aria-label="Class and course price images">
+                                <figure>
+                                    <img
+                                        src="assets/images/sewing_classes_prices.jpeg"
+                                        alt="Sewing classes price sheet"
+                                    >
+                                </figure>
+                                <figure>
+                                    <img
+                                        src="assets/images/sewing_courses.jpeg"
+                                        alt="Sewing courses price sheet"
+                                    >
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- Pricing guidance -->
@@ -254,9 +411,7 @@
             <div class="container footer__grid">
                 <div class="footer__brand">
                     <a class="logo logo--footer" href="index.html" aria-label="Bernina Moot home">
-                        <span class="logo__mark">
-                            B
-                        </span>
+                        <span class="logo__mark"><img src="assets/images/dark%20logo.jpeg" alt="" aria-hidden="true"></span>
                         <span class="logo__text">
                             <strong>
                                 Bernina Moot
