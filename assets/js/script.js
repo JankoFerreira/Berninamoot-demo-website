@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentYear = document.querySelector("#currentYear");
     const priceTabsRoot = document.querySelector("[data-price-tabs]");
     const classPriceImageButtons = Array.from(document.querySelectorAll("[data-class-price-image]"));
-    const mobileNavBreakpoint = window.matchMedia("(max-width: 860px)");
+    const mobileNavBreakpoint = window.matchMedia("(max-width: 1120px)");
     const whatsappIconMarkup = `
         <svg viewBox="0 0 24 24" role="presentation">
             <path

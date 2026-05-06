@@ -40,6 +40,8 @@ motion, navigation states, and utility components.
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -50,6 +52,7 @@ body {
         radial-gradient(circle at top left, rgba(181, 30, 45, 0.06), transparent 28%),
         linear-gradient(180deg, #fffdfc 0%, #f9f5f2 100%);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 body.lightbox-open {
@@ -123,6 +126,20 @@ h3 {
 
 p {
     margin: 0 0 1rem;
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+.button,
+.nav-link,
+.product-card__badge,
+.products-showroom .product-card__meta,
+.service-price-list dt,
+.service-price-list dd {
+    overflow-wrap: anywhere;
 }
 
 .eyebrow {
@@ -147,6 +164,10 @@ p {
 .container {
     width: min(calc(100% - 2rem), var(--container-width));
     margin: 0 auto;
+}
+
+.container > * {
+    min-width: 0;
 }
 
 .section {
@@ -3218,7 +3239,7 @@ p {
 
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1120px) {
     .products-hero {
         min-height: auto;
         padding: 6.5rem 0 3.5rem;
@@ -3336,6 +3357,10 @@ p {
 
     .hero {
         padding-top: 1.5rem;
+    }
+
+    .hero__content--raised {
+        margin-top: 0;
     }
 
     .hero--background {
@@ -3541,8 +3566,13 @@ p {
 
     .pricing-tabs {
         display: grid;
+        grid-template-columns: 1fr;
         width: 100%;
         border-radius: 24px;
+    }
+
+    .pricing-tab {
+        width: 100%;
     }
 
     .pricing-panel,
@@ -3589,6 +3619,56 @@ p {
 
     .container {
         width: min(calc(100% - 1.2rem), var(--container-width));
+    }
+
+    .site-header {
+        padding: 0.5rem 0;
+    }
+
+    .header__inner {
+        gap: 0.7rem;
+        width: 100%;
+        min-width: 0;
+        padding: 0.55rem 0.65rem;
+        border-radius: 18px;
+    }
+
+    .logo {
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 0.58rem;
+    }
+
+    .main-nav {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .logo__text {
+        min-width: 0;
+    }
+
+    .logo__text strong {
+        display: block;
+        max-width: 8.6rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .logo__text small {
+        display: none;
+    }
+
+    .nav-panel {
+        position: fixed;
+        top: calc(var(--header-height-compact) + 0.7rem);
+        left: 0.6rem;
+        right: 0.6rem;
+        width: auto;
+        max-height: calc(100dvh - var(--header-height-compact) - 1.2rem);
+        overflow-y: auto;
+        border-radius: 20px;
     }
 
     .hero__typed-line,
@@ -3666,6 +3746,187 @@ p {
     .page-hero__image {
         background-position: var(--page-hero-position-mobile, var(--page-hero-position, center center));
         transform: scale(var(--page-hero-scale-mobile, var(--page-hero-scale, 1)));
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: clamp(2.05rem, 10.5vw, 2.65rem);
+    }
+
+    h2 {
+        font-size: clamp(1.8rem, 8.5vw, 2.35rem);
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .eyebrow {
+        gap: 0.45rem;
+        letter-spacing: 0.1em;
+    }
+
+    .eyebrow::before {
+        width: 1.6rem;
+    }
+
+    .button {
+        width: 100%;
+        min-height: 48px;
+        padding-inline: 1rem;
+        text-align: center;
+    }
+
+    .logo__mark {
+        width: 5.6rem;
+        height: 2.1rem;
+        border-radius: 11px;
+    }
+
+    .nav-toggle {
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+    }
+
+    .nav-link {
+        min-height: 46px;
+        padding: 0.62rem 0.78rem;
+    }
+
+    .hero--background {
+        padding: 5.6rem 0 3.4rem;
+    }
+
+    .hero__background-image {
+        inset: -2rem;
+        transform: scale(1);
+    }
+
+    .hero__typed-line {
+        display: flex;
+        width: 100%;
+        padding: 0.82rem 0.9rem;
+        border-radius: 20px;
+    }
+
+    .typed-word--headline {
+        display: inline;
+        width: auto;
+        min-width: 0;
+        white-space: normal;
+        font-size: 1em;
+        padding: 0;
+        letter-spacing: 0;
+        text-shadow: none;
+    }
+
+    .hero__trust-row span,
+    .stat-card,
+    .trust-item,
+    .service-card,
+    .pricing-card,
+    .detail-card,
+    .info-card,
+    .repair-card,
+    .contact-card {
+        border-radius: 20px;
+    }
+
+    .hero__stats {
+        gap: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 330px;
+        padding: 5.6rem 0 2.6rem;
+    }
+
+    .page-hero__content {
+        max-width: 100%;
+    }
+
+    .about__panel,
+    .repairs__shell,
+    .contact-form,
+    .split-callout__panel {
+        padding: 1.15rem;
+        border-radius: 22px;
+    }
+
+    .image-frame,
+    .class-panel,
+    .split-callout__image {
+        min-height: 300px;
+        border-radius: 22px;
+    }
+
+    .about__visual .image-frame {
+        min-height: 320px;
+    }
+
+    .about__floating-card {
+        max-width: none;
+        margin: 0.8rem 0 0;
+    }
+
+    .product-card,
+    .gallery-card {
+        min-height: 300px;
+        border-radius: 22px;
+    }
+
+    .product-card--tall,
+    .gallery-card--large {
+        min-height: 340px;
+    }
+
+    .product-card__content,
+    .gallery-card figcaption,
+    .class-panel__content {
+        left: 0.85rem;
+        right: 0.85rem;
+        bottom: 0.85rem;
+    }
+
+    .product-card__topline {
+        flex-wrap: wrap;
+    }
+
+    .products-showroom .product-card__badge {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .products-showroom .product-card__index {
+        font-size: 1.45rem;
+    }
+
+    .service-price-list div {
+        padding: 0.8rem 0.85rem;
+    }
+
+    .service-price-list dd {
+        flex: 1 1 auto;
+    }
+
+    .contact-card a {
+        width: auto;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .map-embed,
+    .map-embed iframe {
+        min-height: 320px;
+        height: 320px;
+    }
+
+    .whatsapp-preview {
+        left: 0.6rem;
+        right: 0.6rem;
+        width: auto;
     }
 }
 
