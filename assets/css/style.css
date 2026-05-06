@@ -2912,6 +2912,12 @@ p {
 .footer__credit {
     color: rgba(255, 255, 255, 0.58);
     font-size: 0.86rem;
+    transition: color var(--transition);
+}
+
+.footer__credit:hover,
+.footer__credit:focus-visible {
+    color: var(--color-white);
 }
 
 .floating-whatsapp,
@@ -3128,6 +3134,35 @@ p {
         padding: 1.1rem;
     }
 
+    .product-learning__visual .class-panel--showroom {
+        display: grid;
+        min-height: 0;
+        background: #17191d;
+    }
+
+    .product-learning__visual .class-panel--showroom::after {
+        display: none;
+    }
+
+    .product-learning__visual .class-panel--showroom img {
+        position: relative;
+        width: 100%;
+        height: clamp(260px, 44vw, 460px);
+        max-height: 460px;
+        object-fit: contain;
+        object-position: center;
+        background: #101216;
+        transform: none;
+    }
+
+    .product-learning__visual .class-panel__content {
+        position: static;
+        padding: 1rem 1.1rem 1.1rem;
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)),
+            #414145;
+    }
+
     .services-atelier__shell {
         grid-template-columns: 1fr;
     }
@@ -3216,34 +3251,6 @@ p {
 
     .product-learning__blade {
         padding: 0.75rem;
-    }
-
-    .product-learning__visual .class-panel--showroom {
-        display: grid;
-        min-height: 0;
-        background: #17191d;
-    }
-
-    .product-learning__visual .class-panel--showroom::after {
-        display: none;
-    }
-
-    .product-learning__visual .class-panel--showroom img {
-        position: relative;
-        height: auto;
-        aspect-ratio: 16 / 10;
-        object-fit: contain;
-        object-position: center;
-        background: #101216;
-        transform: none;
-    }
-
-    .product-learning__visual .class-panel__content {
-        position: static;
-        padding: 1rem 1.1rem 1.1rem;
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)),
-            #414145;
     }
 
     .product-learning__note {
@@ -3451,7 +3458,8 @@ p {
     }
 
     .product-learning__visual .class-panel--showroom img {
-        aspect-ratio: 4 / 3;
+        height: clamp(230px, 62vw, 340px);
+        max-height: 340px;
     }
 
     .product-learning__visual .class-panel__content {
