@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jankoferreira.github.io/Berninamoot-demo-website/sitemap.xml
