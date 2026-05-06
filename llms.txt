@@ -4,7 +4,7 @@
 
 ## Site
 
-- Website: https://jankoferreira.github.io/Berninamoot-demo-website/
+- Website: https://berninamoot.co.za/
 - Location: Shop 3, Villamed Centre, 1085 Cunningham Avenue, Villieria, Pretoria, South Africa
 - Phone: +27 65 932 2725
 - Alternate phone: +27 65 975 8873
@@ -12,11 +12,11 @@
 
 ## Core Pages
 
-- Home: https://jankoferreira.github.io/Berninamoot-demo-website/
-- Services: https://jankoferreira.github.io/Berninamoot-demo-website/services.html
-- Products: https://jankoferreira.github.io/Berninamoot-demo-website/products.html
-- Prices: https://jankoferreira.github.io/Berninamoot-demo-website/prices.html
-- Contact: https://jankoferreira.github.io/Berninamoot-demo-website/contact.html
+- Home: https://berninamoot.co.za/
+- Services: https://berninamoot.co.za/services.html
+- Products: https://berninamoot.co.za/products.html
+- Prices: https://berninamoot.co.za/prices.html
+- Contact: https://berninamoot.co.za/contact.html
 
 ## What Bernina Moot Offers
 

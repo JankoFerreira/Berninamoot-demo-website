@@ -1,0 +1,16 @@
+{
+    "name": "Bernina Moot",
+    "short_name": "Bernina Moot",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "64x64",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ],
+    "start_url": "/",
+    "display": "browser",
+    "theme_color": "#b51e2d",
+    "background_color": "#ffffff"
+}
