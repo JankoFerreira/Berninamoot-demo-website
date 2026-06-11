@@ -2390,6 +2390,43 @@ h4,
     background: rgba(255, 255, 255, 0.86);
 }
 
+.project-hint {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    max-width: 100%;
+    margin: 0.2rem 0 1.2rem;
+    padding: 0.8rem 0.95rem;
+    border-radius: 18px;
+    border: 1px solid rgba(181, 30, 45, 0.14);
+    background:
+        linear-gradient(135deg, rgba(181, 30, 45, 0.08), rgba(255, 255, 255, 0.72)),
+        rgba(255, 255, 255, 0.84);
+    box-shadow: var(--color-shadow-soft);
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.project-hint:hover,
+.project-hint:focus-visible {
+    border-color: rgba(181, 30, 45, 0.28);
+    box-shadow: var(--color-shadow);
+    transform: translateY(-2px);
+}
+
+.project-hint span {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.project-hint strong {
+    color: var(--color-charcoal);
+    font-size: 0.96rem;
+    line-height: 1.35;
+}
+
 .split-callout__image {
     overflow: hidden;
     min-height: 420px;
@@ -2489,6 +2526,11 @@ h4,
     font-size: clamp(1.55rem, 2vw, 2rem);
 }
 
+.pricing-panel__content--classes {
+    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+    align-items: start;
+}
+
 .service-price-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2521,15 +2563,31 @@ h4,
 }
 
 .class-price-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: relative;
+    overflow: hidden;
+    padding: 0.15rem 0;
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.class-price-gallery__track {
+    display: flex;
+    align-items: stretch;
     gap: 0.9rem;
+    width: max-content;
+    animation: class-gallery-roll 34s linear infinite;
+    will-change: transform;
+}
+
+.class-price-gallery:hover .class-price-gallery__track,
+.class-price-gallery:focus-within .class-price-gallery__track {
+    animation-play-state: paused;
 }
 
 .class-price-gallery figure {
     position: relative;
+    flex: 0 0 clamp(210px, 19vw, 260px);
     margin: 0;
-    min-height: 340px;
+    height: clamp(330px, 32vw, 410px);
     border: 1px solid rgba(31, 35, 40, 0.08);
     border-radius: 24px;
     overflow: hidden;
@@ -2553,6 +2611,16 @@ h4,
 .class-price-gallery figure:hover img,
 .class-price-gallery figure:focus-visible img {
     transform: scale(1.03);
+}
+
+@keyframes class-gallery-roll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-50% - 0.45rem));
+    }
 }
 
 .class-image-lightbox {
