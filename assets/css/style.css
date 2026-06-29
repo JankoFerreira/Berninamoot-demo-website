@@ -2922,6 +2922,170 @@ h4,
 .form-field--full {
     grid-column: 1 / -1;
 }
+.contact-form.is-sending,
+.contact-form.is-sent {
+    position: relative;
+}
+
+.contact-form.is-sending .form-field input,
+.contact-form.is-sending .form-field select,
+.contact-form.is-sending .form-field textarea,
+.contact-form.is-sent .form-field input,
+.contact-form.is-sent .form-field select,
+.contact-form.is-sent .form-field textarea {
+    background: rgba(247, 242, 238, 0.72);
+    color: rgba(35, 31, 32, 0.68);
+    cursor: not-allowed;
+}
+
+.contact-form.is-sending .button,
+.contact-form.is-sent .button {
+    cursor: not-allowed;
+    opacity: 0.82;
+}
+
+.contact-submit-status {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(181, 30, 45, 0.16);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 242, 238, 0.86));
+    overflow: hidden;
+}
+
+.contact-submit-status p {
+    margin: 0.55rem 0 0;
+    color: var(--color-charcoal);
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.contact-submit-status[data-state="error"] {
+    border-color: rgba(181, 30, 45, 0.32);
+    background: rgba(255, 245, 245, 0.92);
+}
+
+.contact-submit-status__sky {
+    position: relative;
+    height: 44px;
+    overflow: hidden;
+}
+
+.contact-submit-status__trail {
+    position: absolute;
+    top: 22px;
+    left: 12px;
+    width: 48%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(181, 30, 45, 0.42), transparent);
+    animation: enquiryTrail 1.45s ease-in-out infinite;
+}
+
+.contact-submit-status__trail::before,
+.contact-submit-status__trail::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    width: 54%;
+    height: 2px;
+    border-radius: inherit;
+    background: rgba(181, 30, 45, 0.18);
+}
+
+.contact-submit-status__trail::before {
+    top: -8px;
+}
+
+.contact-submit-status__trail::after {
+    top: 8px;
+}
+
+.contact-submit-status__plane {
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    width: 30px;
+    height: 18px;
+    border-radius: 999px 999px 999px 4px;
+    background: var(--color-primary);
+    box-shadow: 0 10px 22px rgba(181, 30, 45, 0.2);
+    transform: translateX(0) rotate(-10deg);
+    animation: enquiryPlane 1.45s ease-in-out infinite;
+}
+
+.contact-submit-status__plane::before,
+.contact-submit-status__plane::after {
+    content: "";
+    position: absolute;
+    background: var(--color-primary-dark);
+}
+
+.contact-submit-status__plane::before {
+    left: 9px;
+    top: -8px;
+    width: 15px;
+    height: 13px;
+    border-radius: 14px 14px 2px 2px;
+    transform: skewX(-24deg);
+}
+
+.contact-submit-status__plane::after {
+    left: 8px;
+    bottom: -7px;
+    width: 18px;
+    height: 10px;
+    border-radius: 2px 2px 14px 14px;
+    transform: skewX(28deg);
+}
+
+.contact-submit-status[data-state="sent"] .contact-submit-status__plane {
+    animation-duration: 1.05s;
+}
+
+.contact-submit-status[data-state="sent"] .contact-submit-status__trail {
+    animation-duration: 1.05s;
+}
+
+.contact-submit-status[data-state="error"] .contact-submit-status__sky {
+    display: none;
+}
+
+@keyframes enquiryPlane {
+    0% {
+        opacity: 0;
+        transform: translateX(-34px) translateY(9px) rotate(-10deg) scale(0.92);
+    }
+
+    18% {
+        opacity: 1;
+    }
+
+    74% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(min(520px, 78vw)) translateY(-10px) rotate(-10deg) scale(1.05);
+    }
+}
+
+@keyframes enquiryTrail {
+    0% {
+        opacity: 0;
+        transform: translateX(-24px) scaleX(0.2);
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(min(460px, 70vw)) scaleX(0.85);
+    }
+}
 
 .repairs__shell {
     padding: 2rem;
@@ -4219,4 +4383,19 @@ h4,
         transform: none;
     }
 
+
+    .contact-submit-status__plane,
+    .contact-submit-status__trail {
+        animation: none;
+    }
+
+    .contact-submit-status__plane {
+        opacity: 1;
+        transform: translateX(12px) rotate(-10deg);
+    }
+
+    .contact-submit-status__trail {
+        opacity: 0.75;
+        transform: translateX(0) scaleX(0.72);
+    }
 }

@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
     const backToTopButton = document.querySelector(".back-to-top");
     const currentYear = document.querySelector("#currentYear");
+    const contactForm = document.querySelector("[data-contact-form]");
     const priceTabsRoot = document.querySelector("[data-price-tabs]");
     const classPriceImageButtons = Array.from(document.querySelectorAll("[data-class-price-image]"));
     const mobileNavBreakpoint = window.matchMedia("(max-width: 1120px)");
@@ -280,6 +281,62 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    if (contactForm) {
+        const status = contactForm.querySelector("[data-contact-status]");
+        const statusText = status?.querySelector("p");
+        const fields = Array.from(contactForm.querySelectorAll("input, select, textarea, button"));
+
+        const setFormDisabled = (isDisabled) => {
+            fields.forEach((field) => {
+                field.disabled = isDisabled;
+            });
+        };
+
+        const showStatus = (message, state) => {
+            if (!status || !statusText) return;
+            status.hidden = false;
+            statusText.textContent = message;
+            status.dataset.state = state;
+        };
+
+        contactForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (contactForm.classList.contains("is-sent")) return;
+
+            const endpoint = contactForm.getAttribute("action");
+            if (!endpoint) return;
+
+            const formData = new FormData(contactForm);
+
+            setFormDisabled(true);
+            contactForm.classList.add("is-sending");
+            showStatus("Sending your enquiry...", "sending");
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Form submission failed");
+                }
+
+                contactForm.classList.remove("is-sending");
+                contactForm.classList.add("is-sent");
+                showStatus("Your enquiry has been sent. Bernina Moot will be in touch soon.", "sent");
+            } catch (error) {
+                contactForm.classList.remove("is-sending");
+                setFormDisabled(false);
+                showStatus("Something went wrong. Please try again or contact Bernina Moot by phone or WhatsApp.", "error");
+            }
+        });
+    }
+
 
     if (backToTopButton) {
         backToTopButton.addEventListener("click", () => {
