@@ -283,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (contactForm) {
         const status = contactForm.querySelector("[data-contact-status]");
-        const statusText = status?.querySelector("p");
         const fields = Array.from(contactForm.querySelectorAll("input, select, textarea, button"));
 
         const setFormDisabled = (isDisabled) => {
@@ -293,9 +292,9 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const showStatus = (message, state) => {
-            if (!status || !statusText) return;
+            if (!status) return;
             status.hidden = false;
-            statusText.textContent = message;
+            status.textContent = message;
             status.dataset.state = state;
         };
 

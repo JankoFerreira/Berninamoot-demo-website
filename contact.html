@@ -320,16 +320,12 @@
                             </label>
                         </div>
                         <input type="hidden" name="_subject" value="New website enquiry from Bernina Moot">
-                        <button class="button button--primary" type="submit">
-                            Send Enquiry
+                        <button class="button button--primary contact-submit-button" type="submit">
+                            <span>Send Enquiry</span>
+                            <span class="contact-submit-button__trail" aria-hidden="true"></span>
+                            <span class="contact-submit-button__plane" aria-hidden="true"></span>
                         </button>
-                        <div class="contact-submit-status" data-contact-status aria-live="polite" hidden>
-                            <div class="contact-submit-status__sky" aria-hidden="true">
-                                <span class="contact-submit-status__trail"></span>
-                                <span class="contact-submit-status__plane"></span>
-                            </div>
-                            <p></p>
-                        </div>
+                        <p class="contact-submit-status" data-contact-status aria-live="polite" hidden></p>
                     </form>
                 </div>
             </section>

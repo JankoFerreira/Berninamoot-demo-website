@@ -2938,152 +2938,144 @@ h4,
     cursor: not-allowed;
 }
 
-.contact-form.is-sending .button,
-.contact-form.is-sent .button {
+.contact-submit-button {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+}
+
+.contact-form.is-sending .contact-submit-button,
+.contact-form.is-sent .contact-submit-button {
     cursor: not-allowed;
-    opacity: 0.82;
+}
+
+.contact-form.is-sending .contact-submit-button > span:first-child,
+.contact-form.is-sent .contact-submit-button > span:first-child {
+    opacity: 0.78;
+}
+
+.contact-submit-button__trail,
+.contact-submit-button__plane {
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 18px);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.contact-submit-button__trail {
+    width: 165px;
+    height: 28px;
+    transform: translateY(-50%);
+    background-image:
+        radial-gradient(circle, rgba(181, 30, 45, 0.72) 0 2px, transparent 2.6px),
+        radial-gradient(circle, rgba(181, 30, 45, 0.36) 0 1.5px, transparent 2.1px),
+        radial-gradient(circle, rgba(181, 30, 45, 0.22) 0 1.3px, transparent 2px);
+    background-position: 0 13px, 18px 5px, 36px 21px;
+    background-size: 24px 24px, 32px 28px, 38px 30px;
+    background-repeat: repeat-x;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 74%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 74%, transparent 100%);
+    z-index: 1;
+}
+
+.contact-submit-button__plane {
+    width: 35px;
+    height: 26px;
+    transform: translate(0, -50%) rotate(-12deg);
+    filter: drop-shadow(0 12px 18px rgba(181, 30, 45, 0.22));
+    z-index: 2;
+}
+
+.contact-submit-button__plane::before,
+.contact-submit-button__plane::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 48%, 100% 0, 68% 54%, 100% 100%);
+}
+
+.contact-submit-button__plane::before {
+    background: #fff;
+}
+
+.contact-submit-button__plane::after {
+    background: linear-gradient(135deg, #ffffff 0 46%, #f0d7d9 47% 58%, var(--color-primary) 59% 100%);
+    transform: translate(1px, 1px) scale(0.94);
+    transform-origin: center;
+}
+
+.contact-form.is-sending .contact-submit-button__plane {
+    animation: paperPlaneLaunch 1.7s cubic-bezier(0.19, 0.74, 0.28, 1) infinite;
+}
+
+.contact-form.is-sending .contact-submit-button__trail {
+    animation: paperPlaneTrail 1.7s cubic-bezier(0.19, 0.74, 0.28, 1) infinite;
+}
+
+.contact-form.is-sent .contact-submit-button__plane {
+    animation: paperPlaneLaunch 1.7s cubic-bezier(0.19, 0.74, 0.28, 1) 1;
+}
+
+.contact-form.is-sent .contact-submit-button__trail {
+    animation: paperPlaneTrail 1.7s cubic-bezier(0.19, 0.74, 0.28, 1) 1;
 }
 
 .contact-submit-status {
-    margin-top: 1rem;
-    padding: 1rem 1.1rem;
-    border: 1px solid rgba(181, 30, 45, 0.16);
-    border-radius: 18px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 242, 238, 0.86));
-    overflow: hidden;
-}
-
-.contact-submit-status p {
-    margin: 0.55rem 0 0;
+    display: block;
+    margin: 0.9rem 0 0;
     color: var(--color-charcoal);
     font-size: 0.95rem;
     font-weight: 800;
 }
 
+.contact-submit-status[data-state="sent"] {
+    color: var(--color-charcoal);
+}
+
 .contact-submit-status[data-state="error"] {
-    border-color: rgba(181, 30, 45, 0.32);
-    background: rgba(255, 245, 245, 0.92);
+    color: var(--color-primary-dark);
 }
 
-.contact-submit-status__sky {
-    position: relative;
-    height: 44px;
-    overflow: hidden;
-}
-
-.contact-submit-status__trail {
-    position: absolute;
-    top: 22px;
-    left: 12px;
-    width: 48%;
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, rgba(181, 30, 45, 0.42), transparent);
-    animation: enquiryTrail 1.45s ease-in-out infinite;
-}
-
-.contact-submit-status__trail::before,
-.contact-submit-status__trail::after {
-    content: "";
-    position: absolute;
-    right: 16px;
-    width: 54%;
-    height: 2px;
-    border-radius: inherit;
-    background: rgba(181, 30, 45, 0.18);
-}
-
-.contact-submit-status__trail::before {
-    top: -8px;
-}
-
-.contact-submit-status__trail::after {
-    top: 8px;
-}
-
-.contact-submit-status__plane {
-    position: absolute;
-    top: 12px;
-    left: 8px;
-    width: 30px;
-    height: 18px;
-    border-radius: 999px 999px 999px 4px;
-    background: var(--color-primary);
-    box-shadow: 0 10px 22px rgba(181, 30, 45, 0.2);
-    transform: translateX(0) rotate(-10deg);
-    animation: enquiryPlane 1.45s ease-in-out infinite;
-}
-
-.contact-submit-status__plane::before,
-.contact-submit-status__plane::after {
-    content: "";
-    position: absolute;
-    background: var(--color-primary-dark);
-}
-
-.contact-submit-status__plane::before {
-    left: 9px;
-    top: -8px;
-    width: 15px;
-    height: 13px;
-    border-radius: 14px 14px 2px 2px;
-    transform: skewX(-24deg);
-}
-
-.contact-submit-status__plane::after {
-    left: 8px;
-    bottom: -7px;
-    width: 18px;
-    height: 10px;
-    border-radius: 2px 2px 14px 14px;
-    transform: skewX(28deg);
-}
-
-.contact-submit-status[data-state="sent"] .contact-submit-status__plane {
-    animation-duration: 1.05s;
-}
-
-.contact-submit-status[data-state="sent"] .contact-submit-status__trail {
-    animation-duration: 1.05s;
-}
-
-.contact-submit-status[data-state="error"] .contact-submit-status__sky {
-    display: none;
-}
-
-@keyframes enquiryPlane {
+@keyframes paperPlaneLaunch {
     0% {
         opacity: 0;
-        transform: translateX(-34px) translateY(9px) rotate(-10deg) scale(0.92);
+        transform: translate(-8px, -50%) rotate(-8deg) scale(0.82);
     }
 
-    18% {
+    10% {
         opacity: 1;
     }
 
-    74% {
+    58% {
         opacity: 1;
+        transform: translate(150px, -108%) rotate(-17deg) scale(1);
     }
 
     100% {
         opacity: 0;
-        transform: translateX(min(520px, 78vw)) translateY(-10px) rotate(-10deg) scale(1.05);
+        transform: translate(270px, -168%) rotate(-24deg) scale(0.92);
     }
 }
 
-@keyframes enquiryTrail {
+@keyframes paperPlaneTrail {
     0% {
         opacity: 0;
-        transform: translateX(-24px) scaleX(0.2);
+        transform: translate(-20px, -50%) scaleX(0.18);
     }
 
-    25% {
+    14% {
         opacity: 1;
+    }
+
+    62% {
+        opacity: 0.92;
+        transform: translate(10px, -72%) scaleX(0.92);
     }
 
     100% {
         opacity: 0;
-        transform: translateX(min(460px, 70vw)) scaleX(0.85);
+        transform: translate(90px, -102%) scaleX(0.58);
     }
 }
 
@@ -4382,20 +4374,20 @@ h4,
         filter: none;
         transform: none;
     }
-
-
-    .contact-submit-status__plane,
-    .contact-submit-status__trail {
-        animation: none;
+    .contact-submit-button__plane,
+    .contact-submit-button__trail {
+        animation: none !important;
     }
 
-    .contact-submit-status__plane {
+    .contact-form.is-sending .contact-submit-button__plane,
+    .contact-form.is-sent .contact-submit-button__plane {
         opacity: 1;
-        transform: translateX(12px) rotate(-10deg);
+        transform: translate(22px, -50%) rotate(-12deg);
     }
 
-    .contact-submit-status__trail {
-        opacity: 0.75;
-        transform: translateX(0) scaleX(0.72);
+    .contact-form.is-sending .contact-submit-button__trail,
+    .contact-form.is-sent .contact-submit-button__trail {
+        opacity: 0.7;
+        transform: translate(0, -50%) scaleX(0.5);
     }
 }
