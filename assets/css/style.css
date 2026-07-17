@@ -2564,8 +2564,8 @@ h4,
 
 
 .class-selection {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.55rem;
     margin-top: 0.9rem;
 }
@@ -2573,7 +2573,8 @@ h4,
 .class-selection__button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
     min-height: 40px;
     padding: 0.55rem 0.82rem;
     border: 1px solid rgba(181, 30, 45, 0.16);
@@ -2582,6 +2583,7 @@ h4,
     color: var(--color-primary-dark);
     font-size: 0.86rem;
     font-weight: 800;
+    text-align: left;
     box-shadow: 0 10px 22px rgba(24, 28, 34, 0.06);
     transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
