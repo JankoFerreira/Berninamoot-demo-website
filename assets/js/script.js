@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const floatingWhatsappIcon = document.querySelector(".floating-whatsapp__icon");
     const floatingWhatsapp = document.querySelector(".floating-whatsapp");
     const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
+    const b990LightboxTrigger = document.querySelector("[data-b990-lightbox-open]");
     const backToTopButton = document.querySelector(".back-to-top");
     const currentYear = document.querySelector("#currentYear");
     const contactForm = document.querySelector("[data-contact-form]");
@@ -77,6 +78,76 @@ document.addEventListener("DOMContentLoaded", () => {
         header.classList.toggle("is-scrolled", window.scrollY > 24);
     };
 
+    let b990Lightbox = null;
+    let b990LightboxZoom = 1;
+
+    const setB990LightboxZoom = (nextZoom) => {
+        if (!b990Lightbox) return;
+        const image = b990Lightbox.querySelector(".b990-lightbox__image");
+        const zoomLabel = b990Lightbox.querySelector("[data-b990-zoom-label]");
+        if (!image) return;
+
+        b990LightboxZoom = Math.min(Math.max(nextZoom, 1), 3);
+        image.style.width = `${Math.round(b990LightboxZoom * 100)}%`;
+        image.style.height = "auto";
+        image.style.maxWidth = b990LightboxZoom === 1 ? "100%" : "none";
+        image.style.maxHeight = b990LightboxZoom === 1 ? "100%" : "none";
+
+        if (zoomLabel) {
+            zoomLabel.textContent = `${Math.round(b990LightboxZoom * 100)}%`;
+        }
+    };
+
+    const closeB990Lightbox = () => {
+        if (!b990Lightbox) return;
+        b990Lightbox.classList.remove("is-open");
+        b990Lightbox.setAttribute("aria-hidden", "true");
+        body.classList.remove("lightbox-open");
+        setB990LightboxZoom(1);
+        b990LightboxTrigger?.focus();
+    };
+
+    const openB990Lightbox = () => {
+        if (!b990LightboxTrigger) return;
+
+        if (!b990Lightbox) {
+            const previewImage = b990LightboxTrigger.querySelector("img");
+            b990Lightbox = document.createElement("div");
+            b990Lightbox.className = "b990-lightbox";
+            b990Lightbox.setAttribute("aria-hidden", "true");
+            b990Lightbox.innerHTML = `
+                <div class="b990-lightbox__shell" role="dialog" aria-modal="true" aria-label="BERNINA 990 advertisement preview">
+                    <div class="b990-lightbox__toolbar" aria-label="Image zoom controls">
+                        <button class="b990-lightbox__control" type="button" data-b990-zoom-out aria-label="Zoom out">-</button>
+                        <span class="b990-lightbox__zoom" data-b990-zoom-label>100%</span>
+                        <button class="b990-lightbox__control" type="button" data-b990-zoom-in aria-label="Zoom in">+</button>
+                        <button class="b990-lightbox__control" type="button" data-b990-zoom-reset aria-label="Reset zoom">Reset</button>
+                    </div>
+                    <button class="b990-lightbox__close" type="button" aria-label="Close preview">&times;</button>
+                    <div class="b990-lightbox__viewport">
+                        <img class="b990-lightbox__image" src="${previewImage?.src || ""}" alt="${previewImage?.alt || "BERNINA 990 launch advertisement"}">
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(b990Lightbox);
+
+            b990Lightbox.querySelector(".b990-lightbox__close")?.addEventListener("click", closeB990Lightbox);
+            b990Lightbox.querySelector("[data-b990-zoom-in]")?.addEventListener("click", () => setB990LightboxZoom(b990LightboxZoom + 0.25));
+            b990Lightbox.querySelector("[data-b990-zoom-out]")?.addEventListener("click", () => setB990LightboxZoom(b990LightboxZoom - 0.25));
+            b990Lightbox.querySelector("[data-b990-zoom-reset]")?.addEventListener("click", () => setB990LightboxZoom(1));
+            b990Lightbox.addEventListener("click", (event) => {
+                if (event.target === b990Lightbox) {
+                    closeB990Lightbox();
+                }
+            });
+        }
+
+        b990Lightbox.classList.add("is-open");
+        b990Lightbox.setAttribute("aria-hidden", "false");
+        body.classList.add("lightbox-open");
+        setB990LightboxZoom(1);
+        b990Lightbox.querySelector("[data-b990-zoom-in]")?.focus();
+    };
     const setActiveNavLink = () => {
         if (!navLinks.length) return;
 
@@ -107,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
             closeMobileMenu();
+            closeB990Lightbox();
         }
     });
 
@@ -139,6 +211,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.addEventListener("scroll", requestScrollUIUpdate, { passive: true });
+
+    b990LightboxTrigger?.addEventListener("click", openB990Lightbox);
+
     window.addEventListener("resize", () => {
         if (!mobileNavBreakpoint.matches) {
             closeMobileMenu();
