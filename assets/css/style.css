@@ -789,6 +789,107 @@ h4,
     font-size: 1rem;
 }
 
+/* Seasonal campaign feature */
+.black-friday {
+    padding: 4.5rem 0 5.5rem;
+}
+
+.black-friday__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: clamp(1.5rem, 4vw, 4rem);
+    border-radius: var(--radius-lg);
+    background: radial-gradient(circle at 80% 20%, rgba(181, 30, 45, 0.22), transparent 45%), #1f2328;
+    box-shadow: 0 30px 80px rgba(24, 28, 34, 0.16);
+    overflow: hidden;
+}
+
+.black-friday__eyebrow {
+    color: #ff858e;
+}
+
+.black-friday__content h2 {
+    max-width: 600px;
+    color: var(--color-white);
+}
+
+.black-friday__intro {
+    max-width: 520px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.05rem;
+}
+
+.black-friday__details {
+    display: grid;
+    gap: 1.1rem;
+    margin: 2rem 0 2.2rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--color-primary);
+}
+
+.black-friday__details span,
+.black-friday__details strong {
+    display: block;
+}
+
+.black-friday__details span {
+    color: #ff858e;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.black-friday__details strong {
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.black-friday__artwork {
+    width: min(100%, 430px);
+    justify-self: center;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+}
+
+.black-friday__artwork img {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;
+    border-radius: 14px;
+}
+
+@media (max-width: 800px) {
+    .black-friday__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .black-friday__artwork {
+        width: min(100%, 480px);
+    }
+}
+
+@media (max-width: 480px) {
+    .black-friday {
+        padding: 3rem 0 4rem;
+    }
+
+    .black-friday__layout {
+        padding: 1.5rem;
+        border-radius: 24px;
+    }
+
+    .black-friday__content h2 {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+}
+
 .trust-strip {
     padding: 0 0 2rem;
 }
