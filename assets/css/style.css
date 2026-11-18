@@ -810,7 +810,7 @@ h4,
     color: #ff858e;
 }
 
-.black-friday__content h2 {
+.black-friday__content :is(h1, h2) {
     max-width: 600px;
     color: var(--color-white);
 }
@@ -885,8 +885,40 @@ h4,
         border-radius: 24px;
     }
 
-    .black-friday__content h2 {
+    .black-friday__content :is(h1, h2) {
         font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+}
+
+.detail-grid.specials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.specials-flyer {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 14px;
+}
+
+.specials-flyer img {
+    height: auto;
+    border-radius: inherit;
+}
+
+.specials-workshop {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 350px);
+    align-items: start;
+    gap: 1.5rem;
+}
+
+.specials-workshop .specials-flyer {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .specials-workshop {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
